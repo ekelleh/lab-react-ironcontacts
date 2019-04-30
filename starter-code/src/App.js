@@ -20,6 +20,41 @@ class App extends Component {
       contactsArray: newContactsArray
     })
   }
+
+  sortByName = () => {
+
+    let newContactsArray = this.state.contactsArray.sort((a, b) => {
+      let nameA = a.name.toUpperCase();
+      let nameB = b.name.toUpperCase();
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+      return 0
+    });
+    this.setState({ contactsArray: newContactsArray })
+  }
+
+  sortByPopularity = () => {
+
+    let newContactsArray = this.state.contactsArray.sort((a, b) => {
+
+      if (a.popularity < b.popularity) {
+        return 1
+      }
+      if (a.popularity > b.popularity) {
+        return -1
+      }
+      return 0
+    })
+    console.log(newContactsArray)
+    this.setState({ contactsArray: newContactsArray })
+  }
+
+
+
   render() {
 
     const contactElements = this.state.contactsArray.map((el, index) => {
@@ -30,22 +65,27 @@ class App extends Component {
       <div className="App">
 
         <button onClick={() => this.randomContact()}> Add Random Contact</button>
+        <button onClick={() => this.sortByName()}> Sort By Name</button>
+        <button onClick={() => this.sortByPopularity()}> Sort by Popularity</button>
+
         <table>
-          <tr>
-            <th colSpan='3'> <h1>Iron Contacts</h1></th>
-          </tr>
-          <tr>
-            <th>
-              Picture
+          <tbody>
+            <tr>
+              <th colSpan='3'> <h1>Iron Contacts</h1></th>
+            </tr>
+            <tr>
+              <th>
+                Picture
                 </th>
-            <th >
-              Name
+              <th >
+                Name
               </th>
-            <th>
-              Popularity
+              <th>
+                Popularity
               </th>
-          </tr>
-          {contactElements}
+            </tr>
+            {contactElements}
+          </tbody>
         </table>
 
       </div>

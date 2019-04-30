@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-class Contacts extends React.Component {
+class IronContacts extends React.Component {
   render() {
 
     const { name, pictureUrl, popularity } = this.props.data
@@ -19,4 +19,4 @@ class Contacts extends React.Component {
 }
 
 
-export default Contacts;
+export default IronContacts;
